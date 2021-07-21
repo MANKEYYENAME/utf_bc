@@ -1,6 +1,7 @@
 name "utf_bc"
 description "D library for work with unicode formats. BetterC, pure, safe..."
 authors "Menshikov Konstantin"
-license "Public domain"
+copyright "2021 © Menshikov Konstatin"
+license "public domain"
 
 buildOptions "betterC"
