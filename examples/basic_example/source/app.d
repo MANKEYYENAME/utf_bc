@@ -15,5 +15,5 @@ void main(){
 	auto utf8_string = cast(char[]) 
 		encode!(TextFormat.UTF_8, typeof(GCAllocator.instance), false, dstring)
 			("Hello, World!"d, GCAllocator.instance, err);
-	writeln(utf8);
+	writeln(utf8_string);
 }
