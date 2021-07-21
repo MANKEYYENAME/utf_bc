@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/utf_bc
+utf_bc.so
+utf_bc.dylib
+utf_bc.dll
+utf_bc.a
+utf_bc.lib
+utf_bc-test-*
+*.exe
+*.o
+*.obj
+*.lst

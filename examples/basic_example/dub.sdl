@@ -1,0 +1,6 @@
+name "basic_example"
+description "Example for utf_bc package"
+authors "Menshikov Konstatin"
+license "Public domain"
+
+dependency "utf_bc" path="../../"
