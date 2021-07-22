@@ -54,12 +54,13 @@ void main() @safe{
 		enum postfixs = ["8", "16", "32"];
 
 		static foreach(first; postfixs) static foreach(second; postfixs){
-			static if(first != second)
-			assert(myconvert!(
-					mixin("TextFormat.UTF_"~first), 
-					mixin("TextFormat.UTF_"~second)
-				)
-				(mixin("str_"~first).dup) == mixin("str_"~second));
+			static if(first != second){
+				assert(myconvert!(
+						mixin("TextFormat.UTF_"~first), 
+						mixin("TextFormat.UTF_"~second)
+					)
+					(mixin("str_"~first).dup) == mixin("str_"~second));
+			}
 		}
 		assert(noError());
 	}

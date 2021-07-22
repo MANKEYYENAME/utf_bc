@@ -1,8 +1,8 @@
 name "utf_bc"
 description "D library for work with unicode formats. BetterC, pure, safe..."
 authors "Menshikov Konstantin"
-copyright "2021 © Menshikov Konstatin"
-license "public domain"
+copyright "Copyright © 2021, Menshikov Konstatin"
+license "MIT"
 
 targetType "staticLibrary"
 
