@@ -42,3 +42,10 @@ alias typeForTextFormat(TextFormat format) = mixin({
 	else if(format == TextFormat.UTF_8 || format == TextFormat.ASCII) return "char";
 	else assert(0);
 }());
+
+enum textFormatForType(Type) = {
+	if(is(Type == wchar)) return TextFormat.UTF_16;
+	else if(is(Type == dchar)) return TextFormat.UTF_32;
+	else if(is(Type == char)) return TextFormat.UTF_8;
+	else assert(0);
+}();

@@ -13,6 +13,10 @@ void main() @safe{
 	assert("nй€𐍈"d.charAt!(TextFormat.UTF_32)(2) == '€');
 	assert("nй€𐍈"w.charAt!(TextFormat.UTF_16)(3) == '𐍈');
 
+	static assert(textFormatForType!(wchar) == TextFormat.UTF_16);
+	static assert(textFormatForType!(dchar) == TextFormat.UTF_32);
+	static assert(textFormatForType!(char) == TextFormat.UTF_8);
+	
 	@trusted
 	auto myencode(TextFormat format)(dstring str) {
 		return cast(typeForTextFormat!(format)[]) 
