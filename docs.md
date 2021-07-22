@@ -8,6 +8,7 @@
 | `utf_bc.utf8`    | UTF-8 encoding, decoding                                     |
 | `utf_bc.utf16`   | UTF-16LE & UTF-16BE encoding, decoding                       |
 | `utf_bc.utf32`   | UTF-32LE & UTF-32BE encoding, decoding                       |
+| `utf_bc.ucs2`    | UCS-2LE & UCS-2BE. legacy format, only holds 2 ^ 16 characters |
 
 `codeLength!(format)`- get the number of bytes that a character takes in the format. Accepts `dchar`, or the first `char` or ` wchar` of a character.
 

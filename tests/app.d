@@ -16,7 +16,7 @@ void main() @safe{
 	static assert(textFormatForType!(wchar) == TextFormat.UTF_16);
 	static assert(textFormatForType!(dchar) == TextFormat.UTF_32);
 	static assert(textFormatForType!(char) == TextFormat.UTF_8);
-	
+
 	@trusted
 	auto myencode(TextFormat format)(dstring str) {
 		return cast(typeForTextFormat!(format)[]) 
@@ -25,7 +25,7 @@ void main() @safe{
 	}
 
 	@safe
-	auto myconvert(TextFormat from, TextFormat to)(typeForTextFormat!(from)[] slice){
+	auto myconvert(TextFormat from, TextFormat to)(const typeForTextFormat!(from)[] slice){
 		return convert!(from, to, typeof(Mallocator.instance), false)
 			(slice, Mallocator.instance, err);
 
@@ -82,4 +82,5 @@ void main() @safe{
 	]){
 		simpleTest!(str)();
 	}
+	assert(myconvert!(TextFormat.UCS_2, TextFormat.UTF_16)("test string"w) == "test string"w);
 }

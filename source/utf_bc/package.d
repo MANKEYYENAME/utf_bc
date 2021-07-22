@@ -5,6 +5,7 @@ public import utf_bc.ascii: decodeChar, codeLength, encodeChar;
 public import utf_bc.utf8: decodeChar, codeLength, encodeChar;
 public import utf_bc.utf16: decodeChar, codeLength, encodeChar;
 public import utf_bc.utf32: decodeChar, codeLength, encodeChar;
+public import utf_bc.ucs2: decodeChar, codeLength, encodeChar;
 
 nothrow @trusted:
 
@@ -42,12 +43,12 @@ auto decode(TextFormat format, bool check_size = true)
 			}
 
 			dchar front() pure{
-				return this.dword().decodeChar!format(err);
+				return this.dword().decodeChar!(format)(err);
 			}
 
 			void popFront() pure{
 				auto a = cast(Tchar*) (slice_.ptr + pos);
-				pos += (*a).codeLength!format;
+				pos += (*a).codeLength!(format);
 			}
 
 			bool empty() const pure{
@@ -107,14 +108,14 @@ template convert(TextFormat FromFormat, TextFormat ToFormat, A, bool allacator_i
 	alias getRange = (slice) => decode!(FromFormat, check_size)(slice);
 	static if(allacator_is_static){
 		typeForTextFormat!(ToFormat)[] 
-		 convert(const(typeForTextFormat!(FromFormat))[] slice, ref FormatError err){
+		 convert(const typeForTextFormat!(FromFormat)[] slice, ref FormatError err){
 			return cast(typeForTextFormat!(ToFormat)[]) 
 				encode!(ToFormat, A, true, typeof(getRange(slice)))(getRange(slice), err);
 		}
 	}
 	else{
 		typeForTextFormat!(ToFormat)[] 
-		 convert(const(typeForTextFormat!(FromFormat))[] slice,ref A allacator, ref FormatError err){
+		 convert(const typeForTextFormat!(FromFormat)[] slice,ref A allacator, ref FormatError err){
 			return cast(typeForTextFormat!(ToFormat)[]) 
 				encode!(ToFormat, A, false, typeof(getRange(slice)))(getRange(slice), allacator, err);
 		}
