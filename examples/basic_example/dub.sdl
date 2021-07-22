@@ -1,7 +1,0 @@
-name "basic_example"
-description "Example for utf_bc package"
-authors "Menshikov Konstatin"
-license "public domain"
-copyright "2021 © Menshikov Konstatin"
-
-dependency "utf_bc" path="../../"
