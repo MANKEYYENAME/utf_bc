@@ -114,7 +114,7 @@ template convert(TextFormat FromFormat, TextFormat ToFormat, A, bool allacator_i
 	}
 	else{
 		typeForTextFormat!(ToFormat)[] 
-		 convert(const(typeForTextFormat!(FromFormat))[] slice, A allacator, ref FormatError err){
+		 convert(const(typeForTextFormat!(FromFormat))[] slice,ref A allacator, ref FormatError err){
 			return cast(typeForTextFormat!(ToFormat)[]) 
 				encode!(ToFormat, A, false, typeof(getRange(slice)))(getRange(slice), allacator, err);
 		}

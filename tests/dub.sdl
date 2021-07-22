@@ -1,0 +1,7 @@
+name "tests"
+
+targetType "executable"
+
+sourceFiles "app.d"
+
+dependency "utf_bc" path="../"

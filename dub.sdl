@@ -4,4 +4,8 @@ authors "Menshikov Konstantin"
 copyright "2021 © Menshikov Konstatin"
 license "public domain"
 
+targetType "staticLibrary"
+
 buildOptions "betterC"
+
+subPackage "tests"
