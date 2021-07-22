@@ -4,7 +4,7 @@ import std.experimental.allocator.mallocator;
 
 FormatError err;
 
-void main(){
+void main() @safe{
 	assert("english русский €€ 𐍈𐍈".codePointsCount!(TextFormat.UTF_8) == 21);
 	assert("english русский €€ 𐍈𐍈"w.codePointsCount!(TextFormat.UTF_16) == 21);
 	assert("english русский €€ 𐍈𐍈"d.codePointsCount!(TextFormat.UTF_32) == 21);
@@ -13,22 +13,27 @@ void main(){
 	assert("nй€𐍈"d.charAt!(TextFormat.UTF_32)(2) == '€');
 	assert("nй€𐍈"w.charAt!(TextFormat.UTF_16)(3) == '𐍈');
 
-	auto myencode(TextFormat format)(dstring str){
+	@trusted
+	auto myencode(TextFormat format)(dstring str) {
 		return cast(typeForTextFormat!(format)[]) 
 		  encode!(format, typeof(Mallocator.instance), false, dstring)
 			(str, Mallocator.instance, err);
 	}
 
+	@safe
 	auto myconvert(TextFormat from, TextFormat to)(typeForTextFormat!(from)[] slice){
 		return convert!(from, to, typeof(Mallocator.instance), false)
 			(slice, Mallocator.instance, err);
 
 	}
 
+	@safe
 	bool noError(){
 		return err == FormatError.None;
 	}
-	
+
+
+	@safe
 	void simpleTest(string str)(){
 		enum str_8 = str;
 		enum str_16 = mixin('"'~str_8~'"'~'w');
